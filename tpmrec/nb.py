@@ -26,7 +26,7 @@ class NB():
         self.categories = set()
         self.vocabularies = set()
         self.wordcount = {}
-        self.catcount = {}
+        self.catcount = defaultdict(int)
 
     def train(self, data):
         """ train model """
@@ -35,7 +35,6 @@ class NB():
             cat, doc = d[0], d[1].split(' ')
             self.categories.add(d[0])
             self.wordcount.setdefault(cat, defaultdict(int))
-            self.catcount.setdefault(cat, 0)
             self.catcount[cat] += 1
             for word in doc:
                 self.vocabularies.add(word)
