@@ -1,13 +1,18 @@
-# Tpmrec: A framework of topic model and recommer system
+Tpmrec: A framework of topic model and recommer system
+=======================================================
 
-## Requirements
+Requirements
+------------
+The follwoings are required to build Tpmrec:
 
-Minimum requirements:
--Python 2.7+
--NumPy 1.9+
+- Python 2.7+
+- NumPy 1.9+
 
-You can install Tpmrec from the source code:
-```
-python setup.py install
-```
 
+How to build
+------------
+You can install Tpmrec from the source code. The following command builds Tpmrec.
+
+.. code:: shell
+
+   python setup.py install
