@@ -28,12 +28,12 @@ class NB():
         self.wordcount = {}
         self.catcount = defaultdict(int)
 
-    def train(self, data):
+    def train(self, input_data, label_data):
         """ train model """
         # count category and word
-        for d in data:
-            cat, doc = d[0], d[1].split(' ')
-            self.categories.add(d[0])
+        for i in range(len(input_data)):
+            cat, doc = label_data[i], input_data[i].split(' ')
+            self.categories.add(cat)
             self.wordcount.setdefault(cat, defaultdict(int))
             self.catcount[cat] += 1
             for word in doc:
@@ -64,13 +64,14 @@ class NB():
         return best_cat
 
 if __name__ == "__main__":
-    input_data = [[0, "He is a good boy"],
-                  [0, "This is a pen"],
-                  [1, "You have to pay money"],
-                  [1, "Please give me money"]]
+    x_input = ["He is a good boy",
+               "This is a pen",
+               "You have to pay money",
+               "Please give me money"]
+    y_label = [0, 0, 1, 1]
 
     nb = NB()
-    nb.train(input_data)
+    nb.train(x_input, y_label)
     print "P(He|cat=0) = ", nb.wordProb("He", 0)
     print "P(He|cat=1) = ", nb.wordProb("He", 1)
     print "P(is|cat=0) = ", nb.wordProb("is", 0)
@@ -83,7 +84,7 @@ if __name__ == "__main__":
     print "log P(cat=1|test_data) = ", nb.score(test_data, 1)
     print "category of test_data = ", nb.predict(test_data)
 
-    test_data = "I want to money money money"
+    test_data = "I want money money money"
     print "log P(cat=0|test_data) = ", nb.score(test_data, 0)
     print "log P(cat=1|test_data) = ", nb.score(test_data, 1)
     print "category of test_data = ", nb.predict(test_data)
