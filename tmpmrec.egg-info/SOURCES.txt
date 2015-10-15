@@ -1,8 +1,0 @@
-README.rst
-setup.py
-tmpmrec.egg-info/PKG-INFO
-tmpmrec.egg-info/SOURCES.txt
-tmpmrec.egg-info/dependency_links.txt
-tmpmrec.egg-info/requires.txt
-tmpmrec.egg-info/top_level.txt
-tpmrec/nb.py

@@ -1,0 +1,8 @@
+README.rst
+setup.py
+tpmrec/nb.py
+tpmrec.egg-info/PKG-INFO
+tpmrec.egg-info/SOURCES.txt
+tpmrec.egg-info/dependency_links.txt
+tpmrec.egg-info/requires.txt
+tpmrec.egg-info/top_level.txt
