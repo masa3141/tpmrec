@@ -8,13 +8,11 @@ You can run followed codes.
 nb = NB()
 nb.train(input_data)
 nb.predict(test_data)
-
 """
 
 import numpy as np
 from collections import defaultdict
 import math
-
 
 class NB():
     """
