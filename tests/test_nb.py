@@ -12,6 +12,11 @@ class TestNb(unittest.TestCase):
     def testEqual(self):
         self.assertEqual(1, 1) # this is just a sample (please remove asap)
         pass
-
+    
+def suite():
+    suite = unittest.TestSuite()
+    suite.addTests(unittest.makeSuite(TestNb))
+    return suite
+    
 if __name__ == '__main__':
-        unittest.main()
+    unittest.main()

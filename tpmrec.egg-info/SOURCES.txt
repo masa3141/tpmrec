@@ -1,5 +1,6 @@
 README.rst
 setup.py
+tpmrec/__init__.py
 tpmrec/nb.py
 tpmrec.egg-info/PKG-INFO
 tpmrec.egg-info/SOURCES.txt
