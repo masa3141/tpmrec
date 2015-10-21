@@ -14,6 +14,7 @@ import numpy as np
 from collections import defaultdict
 import math
 
+
 class NB():
     """
     NB()
@@ -38,7 +39,7 @@ class NB():
                 self.vocabularies.add(word)
                 self.wordcount[cat][word] += 1
 
-    def wordProb(self, word, cat):
+    def word_prob(self, word, cat):
         """ calculate P(word|cat) """
         return float(self.wordcount[cat][word] + 1) / float(sum(self.wordcount[cat].values()) + len(self.vocabularies))
 
@@ -47,7 +48,7 @@ class NB():
         numdoc = sum(self.catcount.values())  # number of documents
         score = math.log(float(self.catcount[cat]) / numdoc)  # log P(cat)
         for word in doc.split(' '):
-            score += math.log(self.wordProb(word, cat))
+            score += math.log(self.word_prob(word, cat))
         return score
 
     def predict(self, doc):
@@ -70,12 +71,12 @@ if __name__ == "__main__":
 
     nb = NB()
     nb.train(x_input, y_label)
-    print "P(He|cat=0) = ", nb.wordProb("He", 0)
-    print "P(He|cat=1) = ", nb.wordProb("He", 1)
-    print "P(is|cat=0) = ", nb.wordProb("is", 0)
-    print "P(is|cat=1) = ", nb.wordProb("is", 1)
-    print "P(money|cat=0) = ", nb.wordProb("money", 0)
-    print "P(money|cat=1) = ", nb.wordProb("money", 1)
+    print "P(He|cat=0) = ", nb.word_prob("He", 0)
+    print "P(He|cat=1) = ", nb.word_prob("He", 1)
+    print "P(is|cat=0) = ", nb.word_prob("is", 0)
+    print "P(is|cat=1) = ", nb.word_prob("is", 1)
+    print "P(money|cat=0) = ", nb.word_prob("money", 0)
+    print "P(money|cat=1) = ", nb.word_prob("money", 1)
 
     test_data = "This is a good pen"
     print "log P(cat=0|test_data) = ", nb.score(test_data, 0)
