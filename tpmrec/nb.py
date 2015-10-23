@@ -4,7 +4,7 @@
 """
 Naive bayes
 
-You can run followed codes.
+You can run following codes.
 nb = NB()
 nb.train(input_data)
 nb.predict(test_data)
