@@ -11,5 +11,5 @@ setup(
     description='A flexible framework of topic model and recommender system',
     packages=['tpmrec'],
     install_requires=['numpy'],
-    test_suite='test_nb.suite'
+    test_suite='tests'
 )
