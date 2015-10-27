@@ -41,8 +41,8 @@ class MF():
             for ind in self.inds:
                 u, i = ind
                 err = self.R[u, i] - R_[u, i]
-                self.p[u, :] += alpha*(2*err*self.q[i, :] - 2*self.lam*self.p[u, :])
-                self.q[i, :] += alpha*(2*err*self.p[u, :] - 2*self.lam*self.q[i, :])
+                self.p[u, :] += self.alpha*(2*err*self.q[i, :] - 2*self.lam*self.p[u, :])
+                self.q[i, :] += self.alpha*(2*err*self.p[u, :] - 2*self.lam*self.q[i, :])
 
     def predict(self):
         return np.dot(self.p, self.q.T)
@@ -53,7 +53,7 @@ class MF():
         for ind in self.inds:
             u, i = ind
             err += (self.R[u, i] - R_[u, i]) ** 2
-        err = np.sqrt(err/len(ind))
+        err = np.sqrt(err/len(self.inds))
         return err
 
 if __name__ == "__main__":
