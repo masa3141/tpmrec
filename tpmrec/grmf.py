@@ -73,7 +73,7 @@ class GRMF():
         R_ = np.zeros([self.N, self.M])
         for u in range(self.N):
             v = np.sum(self.q[self.inds[u], :], axis=0) / np.sqrt(len(self.inds[u]))
-            R_[u, :] = np.dot(v, self.q.T)
+            R_[u, :] = np.dot(v, self.p.T)
         return R_
 
 if __name__ == "__main__":
