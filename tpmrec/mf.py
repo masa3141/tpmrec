@@ -13,6 +13,7 @@ mf.predict()
 
 import numpy as np
 import random
+import argparse
 
 
 class MF():
@@ -66,7 +67,13 @@ if __name__ == "__main__":
     alpha = 0.01
     lam = 0.1
 
-    mf = MF(R, inds, K, alpha, lam)
+    usage = 'Usage: '
+    parser = argparse.ArgumentParser(description='Matrix Factorization')
+    parser.add_argument('-K', dest='K', action='store', default=10, type=int, help='dimention of latent factor')
+    parser.add_argument('-a', '--alpha', dest='alpha', action='store', default=0.3, type=float, help='learning rate')
+    parser.add_argument('-l', '--lam', dest='lam', action='store', default=0.3, type=float, help='reguralized parameter')
+    args = parser.parse_args()
+    mf = MF(R, inds, K, args.alpha, args.lam)
     mf.train(epochs=100)
     print mf.predict()
     print mf.rmse()
