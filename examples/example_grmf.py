@@ -36,31 +36,39 @@ for i, row in data.iterrows():
         itemindex = len(itemid2index)
         itemid2index[itemid] = itemindex
 
-    rating_matrix[userindex, itemindex] = rating
+    rating_matrix[userindex, itemindex] = 1.0
 
 index2userid = {y: x for x, y in userid2index.items()}
 index2itemid = {y: x for x, y in itemid2index.items()}
 
 nonzero_row, nonzero_col = rating_matrix.nonzero()
-inds = zip(nonzero_row.tolist(), nonzero_col.tolist())
+# inds = zip(nonzero_col.tolist(), nonzero_row.tolist())
+inds = [[] for i in range(N)]
+for r, c in zip(nonzero_row.tolist(), nonzero_col.tolist()):
+    inds[r].append(c)
+
 
 import sys
 
 
 sys.path.append('../tpmrec/')
 
-from mf import MF
+from grmf import GRMF
 
-mf = MF(rating_matrix, inds, 10, 0.0001, 0.01)
+K = 10
+alpha = 0.001
+lam = 0.0001
+eta = 0.0000001
 
+grmf = GRMF(rating_matrix, inds, K, alpha, lam, eta)
+grmf.train(epochs=10)
 
-mf.train(10)
 
 for userindex in range(1000):
     userid = index2userid[userindex]
     if len(userid2itemindexes[userid]) > 20:
         continue
-    pr = mf.predict()
+    pr = grmf.predict()
     user_predict = pr[userindex, :]
     top_item_indexes = np.argsort(user_predict)[::-1][:10]
     print "userid = ", userid
