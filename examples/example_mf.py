@@ -70,13 +70,3 @@ for userindex in range(1000):
     for itemindex in top_item_indexes:
         itemid = index2itemid[itemindex]
         print itemid, itemid2name[itemid]
-
-
-
-def read_data():
-    f = open('data/movielens/user_ratedmovies.dat', 'r')
-    line = f.readline().stirp('\n')
-    while line:
-
-
-    f.close
